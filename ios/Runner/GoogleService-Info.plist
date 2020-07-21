@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>622758934349-b0ursirmddr85jja5i528u43o1lhu0l0.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.622758934349-b0ursirmddr85jja5i528u43o1lhu0l0</string>
+	<key>API_KEY</key>
+	<string>AIzaSyB-9NXFuFlHmd29emTiFF_HgHwKrA08PyA</string>
+	<key>GCM_SENDER_ID</key>
+	<string>622758934349</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>jasonchenyusen.yumzz</string>
+	<key>PROJECT_ID</key>
+	<string>yumzz-357b5</string>
+	<key>STORAGE_BUCKET</key>
+	<string>yumzz-357b5.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:622758934349:ios:cd98fa25d5fa8d79296904</string>
+	<key>DATABASE_URL</key>
+	<string>https://yumzz-357b5.firebaseio.com</string>
+</dict>
+</plist>
