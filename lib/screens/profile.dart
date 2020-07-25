@@ -31,6 +31,7 @@ class _ProfileState extends State<Profile> {
   List recipeArray;
   String recipeName;
   String recipeDescription;
+  String recipeRef;
   List<Recipe> recipeList = [];
 
   @override
@@ -107,7 +108,8 @@ class _ProfileState extends State<Profile> {
         print(recipeName);
         final recipeDescription = res['description'];
         print(recipeDescription);
-        final addRecipe = Recipe(recipeDescription: recipeDescription, recipeName: recipeName);
+        final recipeRef = res.documentID;
+        final addRecipe = Recipe(recipeDescription: recipeDescription, recipeName: recipeName, recipeRef: recipeRef);
         recipeList.add(addRecipe);
         print(recipeList);
         //});
@@ -363,14 +365,16 @@ class _ProfileState extends State<Profile> {
           Recipe recipe = recipeList[index];
           return Column(
             children: <Widget>[
-              (index == 0
-                  ? GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => RecipePage()));
-                },
+              FlatButton(
+              onPressed: () {
+              Navigator.push(
+                context,
+                new MaterialPageRoute(
+                    builder: (context) => new RecipePage(recipeRef: recipe.recipeRef)),
+              ).then((value) {
+                setState(() {});
+              });
+            },
                 child: Column(
                   children: <Widget>[
                     Container(
@@ -385,15 +389,6 @@ class _ProfileState extends State<Profile> {
                   ],
                 ),
               )
-                  : Container(
-                color: Color(0xFFD9C38A),
-                child: RecipeListTile(recipe),
-              )),
-              Divider(
-                height: 2,
-                thickness: 1,
-                color: Colors.white,
-              ),
             ],
           );
         },

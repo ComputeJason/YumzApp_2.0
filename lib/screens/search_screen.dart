@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_tags/flutter_tags.dart';
-import 'constants.dart';
-import 'filter_card.dart';
+import 'package:yumzapp/screens/search_results.dart';
+import '../constants.dart';
+import '../filter_card.dart';
 import 'package:flutter/widgets.dart';
 import 'dart:core';
-import 'widgets.dart';
-import 'bottom_button.dart';
+import '../widgets.dart';
+import '../bottom_button.dart';
 import 'dart:math';
 //import 'package:firebase_auth/firebase_auth.dart';
 import 'package:yumzapp/screens/profile.dart';
@@ -40,7 +41,7 @@ class _SearchScreenState extends State<SearchScreen> {
 
 
   //text editing controllers for text fields
-  TextEditingController _descriptionController = TextEditingController();
+  TextEditingController _keywordController = TextEditingController();
   TextEditingController _hourController = TextEditingController();
   TextEditingController _minuteController = TextEditingController();
   TextEditingController _tagController = TextEditingController();
@@ -102,6 +103,7 @@ class _SearchScreenState extends State<SearchScreen> {
             Padding(
               padding: EdgeInsets.only(left: 20.0, right:  20.0,),
               child: TextField(
+                controller: _keywordController,
                 decoration: InputDecoration(
                   hintText: 'keyword here...',
                   hintStyle: TextStyle(
@@ -230,7 +232,14 @@ class _SearchScreenState extends State<SearchScreen> {
             BottomButton(
               text: 'Search',
               onTap:() {
-                /* CalculatorBrain calc = CalculatorBrain(height: height, weight: weight);
+                print(_keywordController.text);
+                Navigator.push(
+                  context,
+                  new MaterialPageRoute(
+                      builder: (context) => new SearchResults(keyword: _keywordController.text, difficulty: difficulty, duration: duration)),
+                ).then((value) {
+                  setState(() {});
+                });                /* CalculatorBrain calc = CalculatorBrain(height: height, weight: weight);
                     Navigator.push(
                         context,
                         MaterialPageRoute(

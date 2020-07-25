@@ -71,7 +71,7 @@ class _AddRecipeState extends State<AddRecipe> {
 
   //for uploading image
   final _picker = ImagePicker();
-  bool imageChanged = false; //check if the image was changed
+  bool imageAdded = false;
   bool imageUploaded = false; //check if the image was uploaded to fireStore
   File _finalImage;
 
@@ -80,7 +80,9 @@ class _AddRecipeState extends State<AddRecipe> {
     PickedFile pickedImage = await _picker.getImage(source: ImageSource.gallery);
     setState(() {
       _finalImage = File(pickedImage.path);
-      imageChanged = true;
+      setState(() {
+        imageAdded = true;
+      });
       print('image changed to:  $_finalImage}');
     });
   }
@@ -113,6 +115,7 @@ class _AddRecipeState extends State<AddRecipe> {
       'ingredients': ingredientMeasurementNameList,
       'steps' : stepsStringList,
       'user': user.email,
+      'image': imageAdded,
       //'created': DateTime.fromMillisecondsSinceEpoch(created.creationTimeMillis, isUtc: true).toString(),
     });
     recipeID = docRef.documentID; //to be used to reference to the photo
@@ -204,7 +207,14 @@ class _AddRecipeState extends State<AddRecipe> {
                         ],
                       ),
 
-                      SizedBox(height: 20.0),
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: Container(
+                          padding: EdgeInsets.only(right: 10.0),
+                          child: Text(imageAdded ? 'image selected' : 'no image selected',
+                          style: TextStyle(fontSize: 10.0),),
+                        ),
+                      ),
                       SizedBox(
                         width: 300.0,
                         child: TextField(
@@ -379,7 +389,7 @@ class _AddRecipeState extends State<AddRecipe> {
                                         //if YES ,save changes into fireStore and go back to profile page
                                         onPressed: () async {
                                           await uploadRecipe();
-                                          if(imageChanged) {
+                                          if(imageAdded) {
                                             print('initiate image uploading');
                                             await _uploadImage();
                                             imageUploaded = true;

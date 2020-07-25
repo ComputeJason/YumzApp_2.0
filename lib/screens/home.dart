@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:yumzapp/constants.dart';
 import 'package:flutter_sticky_header/flutter_sticky_header.dart';
 import 'package:yumzapp/screens/profile.dart';
-import 'package:yumzapp/search_screen.dart';
+import 'package:yumzapp/screens/search_screen.dart';
 
 class HomeHeader implements SliverPersistentHeaderDelegate {
   HomeHeader({
