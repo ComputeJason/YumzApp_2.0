@@ -48,6 +48,8 @@ class _SearchResultsState extends State<SearchResults> {
   String recipeRef;
   int recipeDiff;
   int recipeDur;
+  double recipeDurHr;
+  double recipeDurMin;
   List<Recipe> recipes = [];
   List<Recipe> recipesAll = [];
   List<Recipe> recipesName = [];
@@ -92,9 +94,12 @@ class _SearchResultsState extends State<SearchResults> {
         final recipeDescription = res['description'];
         final recipeDiff = res['difficulty'];
         print(recipeDiff);
-        final recipeDur = res['duration'];
+        final recipeDurHr = res['duration/hour'] == null ? 0 : res['duration/hour'];
+        print(recipeDurHr);
+        final recipeDurMin = res['duration/minute'];
+        print(recipeDurMin);
         final recipeRef = res.documentID;
-        final addRecipe = Recipe(recipeDescription: recipeDescription, recipeName: recipeName, recipeRef: recipeRef, recipeDiff: recipeDiff, recipeDur: recipeDur );
+        final addRecipe = Recipe(recipeDescription: recipeDescription, recipeName: recipeName, recipeRef: recipeRef, recipeDiff: recipeDiff, recipeDurHr: recipeDurHr, recipeDurMin: recipeDurMin);
         recipes.add(addRecipe);
         setState(() {
           _progressController = false;
@@ -105,7 +110,7 @@ class _SearchResultsState extends State<SearchResults> {
     recipesName = recipes.where((p) => p.recipeName.startsWith(keyword)).toList();
     recipesAll = recipesName.where((p) => p.recipeDiff == difficulty && p.recipeDur == duration).toList();
     recipesDifficulty = recipes.where((p) => p.recipeDiff == difficulty).toList();
-    recipesDuration = recipes.where((p) => p.recipeDur == duration).toList();
+    recipesDuration = recipes.where((p) => p.getDuration() == duration).toList();
 
 
     setState(() {

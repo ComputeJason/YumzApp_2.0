@@ -232,6 +232,7 @@ class _SearchScreenState extends State<SearchScreen> {
             BottomButton(
               text: 'Search',
               onTap:() {
+                print(duration);
                 print(_keywordController.text);
                 Navigator.push(
                   context,
